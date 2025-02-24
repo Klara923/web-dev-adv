@@ -1,0 +1,5 @@
+// build docker image
+// docker build -t node-app .
+
+// run a container
+// docker run -p 3000:3000 node-app
