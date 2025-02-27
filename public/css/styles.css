@@ -1,0 +1,153 @@
+* {
+  font-family: "Inter", sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(240, 240, 240);
+  padding: 32px 48px;
+}
+
+img {
+  object-fit: cover;
+}
+
+h2 {
+  font-size: 128px;
+  font-weight: 400;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+#disc-btn,
+#menu-btn {
+  display: flex;
+  justify-content: center;
+  width: max-content;
+  padding: 8px;
+  border-radius: 68px;
+  font-weight: 600;
+}
+
+#disc-btn {
+  color: white;
+  background-color: rgba(35, 35, 35, 0.82);
+}
+
+#menu-btn {
+  color: rgba(36, 36, 36, 1);
+  background-color: rgb(255, 255, 255);
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 56px;
+}
+
+.hero-img {
+  width: 80%;
+}
+
+.main-text-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  padding-top: 56px;
+}
+
+#main-text-1,
+#main-text-2 {
+  font-size: 153px;
+  display: flex;
+}
+
+#main-text-1 {
+  justify-content: flex-start;
+}
+
+#main-text-2 {
+  justify-content: flex-end;
+  padding-bottom: 16px;
+}
+
+.main-text-desc {
+  width: 40%;
+  padding-bottom: 112px;
+}
+
+.categories {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding-bottom: 128px;
+}
+
+.category-wrapper {
+  background-color: #d9d9d9;
+  padding: 16px;
+  width: 506px;
+  height: 439px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.category-wrapper-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.arrow {
+  width: 48px;
+}
+
+.category-img {
+  width: 100%;
+  height: 100%;
+}
+
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.desc-content-wrapper {
+  display: flex;
+  gap: 32px;
+}
+
+.desc-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.description-img {
+  width: 50%;
+  border-radius: 36px;
+}
+
+.content-text {
+  font-size: 24px;
+}

@@ -3,3 +3,7 @@
 
 // run a container
 // docker run -p 3000:3000 node-app
+
+// run the app on 3000 port without docker with immediate refresh
+// ensure that nodemon is installed
+// npx nodemon app.js

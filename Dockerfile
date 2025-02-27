@@ -10,4 +10,4 @@ RUN npm install
 EXPOSE 3000
 # Define the command for starting our web application
 # inside the container (often app.js)
-CMD [ "node", "server.js"]
+CMD [ "node", "app.js"]
