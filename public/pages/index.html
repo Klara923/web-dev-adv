@@ -14,32 +14,34 @@
     <link rel="stylesheet" href="/css/styles.css" />
   </head>
   <body>
-    <header>
-      <nav class="navbar">
-        <div class="logo">
+    <header class="header">
+      <nav class="header__navbar">
+        <div class="header__logo">
           <a href="#"><img src="/img/logo.svg" alt="Logo" /></a>
         </div>
-        <ul class="nav-links">
-          <li id="disc-btn"><a href="/discover">Discover</a></li>
-          <li id="menu-btn">Menu</li>
+        <ul class="header__nav-links">
+          <li class="header__nav-item header__nav-item--discover">
+            <a href="/discover">Discover</a>
+          </li>
+          <li class="header__nav-item header__nav-item--menu">Menu</li>
         </ul>
       </nav>
     </header>
 
-    <main>
+    <main class="main">
       <section class="hero">
         <img
           src="/img/hero.png"
           alt="Photo of Science Park in Jönköping"
-          class="hero-img"
+          class="hero__img"
         />
       </section>
 
-      <section class="main">
-        <div class="main-text-wrapper">
-          <p id="main-text-1">Welcome to</p>
-          <p id="main-text-2">Jönköping City</p>
-          <p class="main-text-desc">
+      <section class="content">
+        <div class="content__header">
+          <h1 class="content__title content__title--first">Welcome to</h1>
+          <h1 class="content__title content__title--second">Jönköping City</h1>
+          <p class="content__description">
             Jkpg City is a big town with a small town atmosphere. Shopping,
             dining and hotels share space with museums, theaters and art
             studios. All surrounded by green parks and blue lakes.
@@ -47,59 +49,55 @@
         </div>
 
         <div class="categories">
-          <div class="category-wrapper">
-            <div class="category-wrapper-header">
-              <p>Shops</p>
-              <img class="arrow" src="/img/arrow-right.svg" />
+          <div class="category">
+            <div class="category__header">
+              <p class="category__title">Shops</p>
+              <img class="category__arrow" src="/img/arrow-right.svg" />
             </div>
 
-            <img class="category-img" src="/img/plchldr.png" />
+            <img class="category__img" src="/img/plchldr.png" />
           </div>
 
-          <div class="category-wrapper">
-            <div class="category-wrapper-header">
-              <p>Shops</p>
-              <img class="arrow" src="/img/arrow-right.svg" />
+          <div class="category">
+            <div class="category__header">
+              <p class="category__title">Shops</p>
+              <img class="category__arrow" src="/img/arrow-right.svg" />
             </div>
 
-            <img class="category-img" src="/img/plchldr.png" />
+            <img class="category__img" src="/img/plchldr.png" />
           </div>
 
-          <div class="category-wrapper">
-            <div class="category-wrapper-header">
-              <p>Shops</p>
-              <img class="arrow" src="/img/arrow-right.svg" />
+          <div class="category">
+            <div class="category__header">
+              <p class="category__title">Shops</p>
+              <img class="category__arrow" src="/img/arrow-right.svg" />
             </div>
 
-            <img class="category-img" src="/img/plchldr.png" />
+            <img class="category__img" src="/img/plchldr.png" />
           </div>
         </div>
 
-        <div class="description">
-          <h2>
+        <div class="feature">
+          <h2 class="feature__title">
             Shopping dining<br />
             and hotels
           </h2>
-          <div class="desc-content-wrapper">
-            <img
-              class="description-img"
-              src="/img/store.png"
-              alt="Store image"
-            />
-            <div class="desc-text-wrapper">
-              <p class="content-text">
+          <div class="feature__content">
+            <img class="feature__img" src="/img/store.png" alt="Store image" />
+            <div class="feature__text-wrapper">
+              <p class="feature__text">
                 Jkpg City is a big town with a small town atmosphere. Shopping,
                 dining and hotels share space with museums, theaters and art
                 studios. All surrounded by green parks and blue lakes.
               </p>
-              <p class="content-text">
+              <p class="feature__text">
                 Jkpg City is a big town with a small town atmosphere. Shopping,
                 dining and hotels share space with museums, theaters and art
                 studios. All surrounded by green parks and blue lakes. Shopping,
                 dining and hotels share space with museums, theaters and art
                 studios.
               </p>
-              <p class="content-text">
+              <p class="feature__text">
                 Shopping, dining and hotels share space with museums, theaters
                 and art studios.
               </p>
@@ -108,5 +106,48 @@
         </div>
       </section>
     </main>
+    <footer class="footer">
+      <div class="footer__info">
+        <img src="/img/logo.svg" alt="Logo" class="footer__logo" />
+        <p class="footer__address">
+          Jönköping City AB<br />c/o Jönköpings kommun<br />Rådhusparken 1<br />551
+          89 Jönköping
+        </p>
+      </div>
+      <div class="footer__section">
+        <h4 class="footer__heading">Discover</h4>
+        <ul class="footer__list">
+          <li class="footer__list-item">Shops</li>
+          <li class="footer__list-item">Restaurants</li>
+          <li class="footer__list-item">Experiences</li>
+        </ul>
+      </div>
+
+      <div class="footer__section">
+        <h4 class="footer__heading">Want to get in contact?</h4>
+        <ul class="footer__list">
+          <li class="footer__list-item">+43 75-312 03 23</li>
+          <li class="footer__list-item">jkpgcity@city.se</li>
+        </ul>
+      </div>
+
+      <div class="footer__section">
+        <h4 class="footer__heading">Follow us</h4>
+        <ul class="footer__list footer__list--social">
+          <li class="footer__list-item footer__list-item--social">
+            <img src="/img/x-icon.svg" alt="X Logo" />
+          </li>
+          <li class="footer__list-item footer__list-item--social">
+            <img src="/img/fb-icon.svg" alt="Facebook Logo" />
+          </li>
+          <li class="footer__list-item footer__list-item--social">
+            <img src="/img/insta-icon.svg" alt="Instagram Logo" />
+          </li>
+          <li class="footer__list-item footer__list-item--social">
+            <img src="/img/lnkdn-icon.svg" alt="LinkedIn Logo" />
+          </li>
+        </ul>
+      </div>
+    </footer>
   </body>
 </html>
