@@ -12,7 +12,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/styles.css" />
-    <script src="/javaScript/script2.js"></script>
+    <script src="/javaScript/script3.js" defer></script>
   </head>
   <body>
     <header class="header">
@@ -30,19 +30,16 @@
     </header>
 
     <main>
-      <h1>Add Venue</h1>
-      <form id="venue-form">
-        <fieldset>
-          <label for="vname">Venue name:</label>
-          <input type="text" id="vname" />
-          <br />
-          <label for="vurl">Url:</label>
-          <input type="text" id="vurl" />
-          <br />
-          <label for="vdistrict">District:</label>
-          <input type="text" id="vdistrict" />
-        </fieldset>
-        <button type="submit" class="submitbutton">Add Venue</button>
+      <h1>Edit Venue</h1>
+      <form id="edit-form">
+        <input type="hidden" id="venue-id" />
+        <label for="vname">Name:</label>
+        <input type="text" id="vname" required />
+        <label for="vurl">URL:</label>
+        <input type="text" id="vurl" required />
+        <label for="vdistrict">District:</label>
+        <input type="text" id="vdistrict" required />
+        <button type="submit">Save Changes</button>
       </form>
       <div id="message"></div>
     </main>

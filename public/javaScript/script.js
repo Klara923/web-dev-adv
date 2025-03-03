@@ -12,8 +12,9 @@ fetch("/api/venues")
       li.classList.add("venue-content");
       const button = document.createElement("button");
       button.classList.add("remove-venue");
-      li.innerHTML = `<div class="venue-text" ><strong>${venue.name}</strong> - ${venue.district} - <a href="${venue.url}">${venue.url}</a></div>`;
+      li.innerHTML = `<div class="venue-text" ><strong>${venue.name}</strong> - ${venue.district} - <a href="${venue.url}">${venue.url}</a> <a href="/edit-venue?id=${venue.id}">Edit</a> </div>`;
       button.textContent = "X";
+
       button.addEventListener("click", async () => {
         try {
           const response = await fetch(`/api/venues/${venue.id}`, {
@@ -33,4 +34,5 @@ fetch("/api/venues")
       li.appendChild(button);
     });
   })
+
   .catch((error) => console.error("Error fetching venues:", error));

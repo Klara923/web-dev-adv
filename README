@@ -1,16 +1,8 @@
 // build docker image
 // docker build -t my-node-app .
 
-<<<<<<< HEAD
-// run the container
+// run the containers
 // docker-compose up
 
 /_app runs on port:13000 and the public directory can be
 changed witout rerunning the docker containers_/
-=======
-// run the containers
-// docker-compose up
-
-/*_app runs on port:13000 and the public directory can be
-changed witout rerunning the docker containers_*/
->>>>>>> f3fe0e3c54de88e0d3941390eba852aaa8a9c186
