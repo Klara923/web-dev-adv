@@ -1,7 +1,7 @@
 // build docker image
 // docker build -t my-node-app .
 
-// run the container
+// run the containers
 // docker-compose up
 
 /*_app runs on port:13000 and the public directory can be
