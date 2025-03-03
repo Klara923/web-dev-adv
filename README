@@ -1,9 +1,8 @@
 // build docker image
-// docker build -t node-app .
+// docker build -t my-node-app .
 
-// run a container
-// docker run -p 3000:3000 node-app
+// run the container
+// docker-compose up
 
-// run the app on 3000 port without docker with immediate refresh
-// ensure that nodemon is installed
-// npx nodemon app.js
+/_app runs on port:13000 and the public directory can be
+changed witout rerunning the docker containers_/

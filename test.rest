@@ -1,11 +1,7 @@
 ###
-GET http://localhost:1337
+GET http://localhost:13000
 ###
- POST http://localhost:1337
- Content-Type: application/json
-
- {
-    "name":"edvin",
-    "location":"jkpg"
- }
+GET http://localhost:13000/
+###
+GET http://localhost:13000/all
 ###

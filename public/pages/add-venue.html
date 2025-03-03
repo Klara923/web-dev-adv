@@ -12,7 +12,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/styles.css" />
-    <script src="/javaScript/script.js"></script>
+    <script src="/javaScript/script2.js"></script>
   </head>
   <body>
     <header class="header">
@@ -30,11 +30,21 @@
     </header>
 
     <main>
-      <h1>Venues List</h1>
-      <a href="/add-venue"> Add venue</a>
-      <ul id="venues-list">
-        <!-- Data from the database will be inserted here -->
-      </ul>
+      <h1>Add Venue</h1>
+      <form id="venue-form">
+        <fieldset>
+          <label for="vname">Venue name:</label>
+          <input type="text" id="vname" />
+          <br />
+          <label for="vurl">Url:</label>
+          <input type="text" id="vurl" />
+          <br />
+          <label for="vdistrict">District:</label>
+          <input type="text" id="vdistrict" />
+        </fieldset>
+        <button type="submit" class="submitbutton">Add Venue</button>
+      </form>
+      <div id="message"></div>
     </main>
     <footer class="footer">
       <div class="footer__info">
