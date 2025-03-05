@@ -4,5 +4,5 @@
 // run the containers
 // docker-compose up
 
-/_app runs on port:13000 and the public directory can be
-changed witout rerunning the docker containers_/
+//app runs on port:13000 and the public directory can be
+//changed witout rerunning the docker containers

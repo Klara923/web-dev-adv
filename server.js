@@ -124,7 +124,6 @@ app.post("/api/venues/edit/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
-    // Fixing the SQL query to use a proper UPDATE statement
     const result = await pool.query(
       "UPDATE venues SET name = $1, url = $2, district = $3 WHERE id = $4 RETURNING *",
       [vname, vurl, vdistrict, id]
@@ -143,6 +142,6 @@ app.post("/api/venues/edit/:id", async (req, res) => {
 
 initializeDatabase().then(() => {
   app.listen(port, () => {
-    console.log(`Server has started on ort ${port}`);
+    console.log(`Server has started on port 13000`);
   });
 });

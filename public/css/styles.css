@@ -13,6 +13,11 @@ body {
 main {
   padding: 32px 48px;
   min-height: 60vh;
+  display: flex;
+  justify-content: center;
+}
+.main-wrapper {
+  max-width: 1440px;
 }
 
 img {
@@ -247,7 +252,85 @@ a {
   display: flex;
   justify-content: space-between;
 }
+.venue-link {
+  width: 100%;
+  color: #000000;
+}
 .remove-venue {
   height: 20px;
   width: 20px;
+}
+#venues-list {
+  background-color: none;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(50px, 400px));
+  column-gap: 2%;
+  row-gap: 5vw;
+  justify-content: center;
+  padding-top: 40px;
+  background-color: none;
+}
+.letter-container {
+  display: flex;
+  align-items: center;
+}
+.line {
+  display: block;
+  height: 1px;
+  width: 100%;
+  border: 0;
+  border-top: 1.5px solid #000000;
+  margin: 1em 0;
+  margin-left: 10px;
+}
+.venue-text {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid #000000;
+  border-radius: 25px;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  height: 60px;
+  background-color: #d9d9d9;
+}
+.add-venue {
+  display: flex;
+  align-items: center;
+  border: 2px solid #000000;
+  border-radius: 25px;
+  padding-left: 15px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 330px;
+  height: 60px;
+  background-color: #d9d9d9;
+  cursor: pointer;
+}
+.arrow {
+  width: 30px;
+  height: 3px;
+  background-color: #000000;
+  position: relative;
+}
+
+.arrow::before,
+.arrow::after {
+  content: "";
+  position: absolute;
+  width: 15px;
+  height: 3px;
+  background-color: #000000;
+  border-radius: 10px 10px 10px 10px;
+}
+.arrow::before {
+  transform: translate(20px, 4.4px) rotate(-45deg);
+}
+
+.arrow::after {
+  transform: translate(20px, -4.4px) rotate(45deg);
 }

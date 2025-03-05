@@ -5,8 +5,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const response = await fetch(`/api/venues/${venueId}`);
-    if (!response.ok) throw new Error("Failed to fetch venue data");
-
     const venue = await response.json();
 
     document.getElementById("venue-id").value = venue.id;
@@ -18,7 +16,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
-// Handle form submission
 document
   .getElementById("edit-form")
   .addEventListener("submit", async (event) => {
@@ -38,9 +35,7 @@ document
 
       if (response.ok) {
         alert("Venue updated successfully!");
-        window.location.href = "/discover"; // Redirect to venue list
-      } else {
-        throw new Error("Update failed");
+        window.location.href = "/discover";
       }
     } catch (error) {
       console.error("Error updating venue:", error);
