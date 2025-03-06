@@ -1,9 +1,17 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs").promises;
-const pool = require("./db");
+const pool = require("./db.js");
 const port = 3000;
+const cookieParser = require("cookie-parser");
+const crypto = require("crypto");
 const app = express();
+
+const SECRET = "mySecretCookieToken";
+
+const sessions = {};
+
+app.use(cookieParser(SECRET));
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
@@ -21,7 +29,57 @@ app.get("/add-venue", (req, res) => {
 app.get("/edit-venue", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "pages", "edit-venue.html"));
 });
+app.get("/login", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "pages", "login.html"));
+});
+app.post("/login", express.urlencoded({ extended: true }), (req, res) => {
+  const { username, password } = req.body;
 
+  if (username === "admin" && password === "password") {
+    const token = crypto.randomBytes(64).toString("hex");
+
+    sessions[token] = { username };
+
+    res.cookie("authToken", token, { signed: true, httpOnly: true });
+
+    res.redirect("/protected");
+  } else {
+    res.redirect("/");
+  }
+});
+app.get("/protected", (req, res) => {
+  const token = req.signedCookies.authToken;
+
+  if (token && sessions[token]) {
+    res.sendFile(path.join(__dirname, "public", "pages", "protected.html"));
+  } else {
+    res.redirect("/login");
+  }
+});
+app.get("/admin", (req, res) => {
+  const token = req.signedCookies.authToken;
+
+  if (token && sessions[token]) {
+    res.sendFile(path.join(__dirname, "public", "pages", "admin.html"));
+  } else {
+    res.redirect("/login");
+  }
+});
+app.get("/logout", (req, res) => {
+  const token = req.signedCookies.authToken;
+
+  if (token && sessions[token]) {
+    delete sessions[token];
+  }
+
+  res.clearCookie("authToken");
+
+  res.redirect("/");
+});
+
+app.get("/logout-page", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "pages", "logout.html"));
+});
 async function initializeDatabase() {
   try {
     await pool.query(`

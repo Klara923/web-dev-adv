@@ -16,15 +16,39 @@ services:
       timeout: 5s
       retries: 5
 
-  app:
-    build: .
+  be:
+    build: ./BE
+    develop:
+      watch:
+        - action: rebuild
+          path: .
+        - action: rebuild
+          path: ./login
     ports:
       - "13000:3000"
     depends_on:
       db:
         condition: service_healthy
-    volumes:
-      - .:/usr/src/app
+    # volumes:
+    #   - .:/usr/src/app
+    environment:
+      - NODE_ENV=development
+
+  fe:
+    build: ./FE
+    develop:
+      watch:
+        - action: rebuild
+          path: .
+        - action: rebuild
+          path: ./login
+    ports:
+      - "13001:3000"
+    depends_on:
+      db:
+        condition: service_healthy
+    # volumes:
+    #   - .:/usr/src/app
     environment:
       - NODE_ENV=development
 
