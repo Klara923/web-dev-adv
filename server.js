@@ -1,7 +1,8 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs").promises;
-const pool = require("./db.js");
+const { query } = require("./db.js");
+const model = require("./models/model");
 const port = 3000;
 const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
@@ -12,7 +13,7 @@ const SECRET = "mySecretCookieToken";
 const sessions = {};
 
 app.use(cookieParser(SECRET));
-
+app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -82,7 +83,7 @@ app.get("/logout-page", (req, res) => {
 });
 async function initializeDatabase() {
   try {
-    await pool.query(`
+    await query(`
       CREATE TABLE IF NOT EXISTS venues (
         id SERIAL PRIMARY KEY, 
         name VARCHAR(500) UNIQUE,
@@ -91,16 +92,21 @@ async function initializeDatabase() {
       )
     `);
 
-    const data = await fs.readFile("venues.json", "utf8");
-    const venues = JSON.parse(data);
-
-    for (const venue of venues) {
-      await pool.query(
-        "INSERT INTO venues(name, url, district) VALUES($1, $2, $3) ON CONFLICT (name) DO NOTHING",
-        [venue.name, venue.url, venue.district]
-      );
+    const check = await query("SELECT COUNT(*) FROM venues");
+    if (check.rows[0].count === "0") { 
+      const data = await fs.readFile("venues.json", "utf8");
+      const venues = JSON.parse(data);
+      
+      for (const venue of venues) {
+        await query(
+          "INSERT INTO venues(name, url, district) VALUES($1, $2, $3) ON CONFLICT (name) DO NOTHING",
+          [venue.name, venue.url, venue.district]
+        );
+      }
+      console.log("Database initialized successfully.");
+    } else {
+      console.log("Database already populated.");
     }
-    console.log("Database initialized successfully.");
   } catch (err) {
     console.error("Error initializing database:", err);
   }
@@ -108,98 +114,54 @@ async function initializeDatabase() {
 
 app.get("/api/venues", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM venues ORDER BY name ASC");
-    res.status(200).json(result.rows);
-  } catch (err) {
-    console.error("Error retrieving venues:", err);
-    res.sendStatus(500);
+    const venues = await model.getAllVenues();
+    res.status(200).json(venues);
+  } catch (error) {
+    res.status(500).json({ error: "Error retrieving venues" });
   }
 });
 
 app.get("/api/venues/:id", async (req, res) => {
-  const { id } = req.params;
   try {
-    const result = await pool.query("SELECT * FROM venues WHERE id = $1", [id]);
-    if (result.rows.length === 0)
-      return res.status(404).json({ error: "Venue not found" });
-
-    res.status(200).json(result.rows[0]);
-  } catch (err) {
-    console.error("Error retrieving venue:", err);
-    res.sendStatus(500);
-  }
-});
-
-app.put("/api/venues/:id", async (req, res) => {
-  const { id } = req.params;
-  const { name, url, district } = req.body;
-
-  try {
-    const result = await pool.query(
-      "UPDATE venues SET name = $1, url = $2, district = $3 WHERE id = $4 RETURNING *",
-      [name, url, district, id]
-    );
-
-    if (result.rowCount === 0)
-      return res.status(404).json({ error: "Venue not found" });
-
-    res.status(200).json({ message: "Venue updated successfully" });
-  } catch (err) {
-    console.error("Error updating venue:", err);
-    res.sendStatus(500);
-  }
-});
-
-app.delete("/api/venues/:id", async (req, res) => {
-  const { id } = req.params;
-  try {
-    const result = await pool.query("DELETE FROM venues WHERE id = $1", [id]);
-    res.status(200).json({ message: "Venue deleted successfully" });
-  } catch (err) {
-    console.error("Error deleting venue:", err);
-    res.sendStatus(500);
+    const venue = await model.getVenueById(req.params.id);
+    if (!venue) return res.status(404).json({ error: "Venue not found" });
+    res.status(200).json(venue);
+  } catch (error) {
+    res.status(500).json({ error: "Error retrieving venue" });
   }
 });
 
 app.post("/api/venues/new", async (req, res) => {
-  const { vname, vurl, vdistrict } = req.body;
-
   try {
-    await pool.query(
-      "INSERT INTO venues (name, url, district) VALUES ($1, $2, $3) ON CONFLICT (name) DO NOTHING",
-      [vname, vurl, vdistrict]
-    );
-
+    await model.addVenue(req.body.vname, req.body.vurl, req.body.vdistrict);
     res.status(201).json({ message: "Venue added successfully" });
-  } catch (err) {
-    console.error("Error adding venue:", err);
-    res.status(500).json({ error: "Internal server error" });
+  } catch (error) {
+    res.status(500).json({ error: "Error adding venue" });
   }
 });
 
-app.post("/api/venues/edit/:id", async (req, res) => {
-  const { vname, vurl, vdistrict } = req.body;
-  const { id } = req.params;
-
+app.put("/api/venues/:id", async (req, res) => {
   try {
-    const result = await pool.query(
-      "UPDATE venues SET name = $1, url = $2, district = $3 WHERE id = $4 RETURNING *",
-      [vname, vurl, vdistrict, id]
-    );
-
-    if (result.rowCount === 0) {
-      return res.status(404).json({ error: "Venue not found" });
-    }
-
+    const success = await model.updateVenue(req.params.id, req.body.name, req.body.url, req.body.district);
+    if (!success) return res.status(404).json({ error: "Venue not found" });
     res.status(200).json({ message: "Venue updated successfully" });
-  } catch (err) {
-    console.error("Error updating venue:", err);
-    res.status(500).json({ error: "Internal server error" });
+  } catch (error) {
+    res.status(500).json({ error: "Error updating venue" });
+  }
+});
+
+app.delete("/api/venues/:id", async (req, res) => {
+  try {
+    const success = await model.deleteVenue(req.params.id);
+    if (!success) return res.status(404).json({ error: "Venue not found" });
+    res.status(200).json({ message: "Venue deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: "Error deleting venue" });
   }
 });
 
 initializeDatabase().then(() => {
   app.listen(port, () => {
-    console.log(`Server has started on port 13000`);
+    console.log(`Server running on port ${port}`);
   });
 });
