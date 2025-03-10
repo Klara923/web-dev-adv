@@ -127,6 +127,7 @@ async function initializeDatabase() {
     `);
 
     const check = await query("SELECT COUNT(*) FROM venues");
+
     if (check.rows[0].count === "0") {
       const data = await fs.readFile("venues.json", "utf8");
       const venues = JSON.parse(data);
