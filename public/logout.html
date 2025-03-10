@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Jkpg City</title>
+    <title>Logout - Jkpg City</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -21,15 +21,28 @@
         </div>
         <ul class="header__nav-links">
           <li class="header__nav-item header__nav-item--discover">
-            <a href="/discover">Admin</a>
+            <a href="/discover">Discover</a>
           </li>
-          <li class="header__nav-item header__nav-item--menu">Menu</li>
+          <li class="header__nav-item header__nav-item--menu">
+            <a href="/login">Login</a>
+          </li>
         </ul>
       </nav>
     </header>
 
-    <main>
-      <h3 class="login__title">this is protected path!!!!</h3>
+    <main class="logout">
+      <h3 class="logout__title">Logout</h3>
+      <div class="logout__content">
+        <p>Are you sure you want to logout?</p>
+        <div class="logout__buttons">
+          <a href="/logout" class="logout__button logout__button--primary"
+            >Logout</a
+          >
+          <a href="/" class="logout__button logout__button--secondary"
+            >Cancel</a
+          >
+        </div>
+      </div>
     </main>
 
     <footer class="footer">

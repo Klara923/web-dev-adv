@@ -21,36 +21,17 @@
         </div>
         <ul class="header__nav-links">
           <li class="header__nav-item header__nav-item--discover">
-            <a href="/discover">Discover</a>
+            <a href="/discover">Admin</a>
           </li>
-          <li class="header__nav-item header__nav-item--menu">Log in</li>
+          <li class="header__nav-item header__nav-item--menu">
+            <a href="/login">Login</a>
+          </li>
         </ul>
       </nav>
     </header>
 
-    <main class="login">
-      <h3 class="login__title">Log in</h3>
-      <form method="POST" class="login__form">
-        <label for="username">Username:</label>
-        <input
-          type="text"
-          class="login__input"
-          id="username"
-          name="username"
-          placeholder="Username"
-          required
-        />
-        <label for="usrname">Password:</label>
-        <input
-          type="password"
-          class="login__input"
-          placeholder="Password"
-          id="password"
-          name="password"
-          required
-        />
-        <button class="login__button" type="submit">Log in</button>
-      </form>
+    <main>
+      <h3 class="login__title">You are logged in!</h3>
     </main>
 
     <footer class="footer">

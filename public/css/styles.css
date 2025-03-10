@@ -76,8 +76,7 @@ a {
 }
 
 .header__nav-item--menu {
-  color: rgba(36, 36, 36, 1);
-  background-color: rgb(255, 255, 255);
+  color: #000000 !important;
 }
 
 /* Footer */
@@ -133,6 +132,7 @@ a {
 .content__header {
   display: flex;
   flex-direction: column;
+  padding-inline: 200px;
 }
 
 .content__title {
@@ -141,6 +141,7 @@ a {
 
 .content__title--first {
   justify-content: flex-start;
+  font-size: 50px !important;
 }
 
 .content__title--second {

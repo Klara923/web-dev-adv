@@ -12,7 +12,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/styles.css" />
-    <script src="/javaScript/script3.js" defer></script>
+    <script src="/javaScript/script.js"></script>
   </head>
   <body>
     <header class="header">
@@ -24,24 +24,21 @@
           <li class="header__nav-item header__nav-item--discover">
             <a href="/discover">Discover</a>
           </li>
-          <li class="header__nav-item header__nav-item--menu">Menu</li>
+          <li class="header__nav-item header__nav-item--menu">
+            <a href="/login">Login</a>
+          </li>
         </ul>
       </nav>
     </header>
 
     <main>
-      <h1>Edit Venue</h1>
-      <form id="edit-form">
-        <input type="hidden" id="venue-id" />
-        <label for="vname">Name:</label>
-        <input type="text" id="vname" required />
-        <label for="vurl">URL:</label>
-        <input type="text" id="vurl" required />
-        <label for="vdistrict">District:</label>
-        <input type="text" id="vdistrict" required />
-        <button type="submit">Save Changes</button>
-      </form>
-      <div id="message"></div>
+      <section class="main-wrapper">
+        <h1>Venues List</h1>
+        <a href="/add-venue"><button class="add-venue">Add venue</button> </a>
+        <section id="venues-list">
+          <!-- Data from the database will be inserted here -->
+        </section>
+      </section>
     </main>
     <footer class="footer">
       <div class="footer__info">

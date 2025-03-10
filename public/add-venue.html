@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Logout - Jkpg City</title>
+    <title>Jkpg City</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,37 +12,42 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/styles.css" />
+    <script src="/javaScript/script2.js"></script>
   </head>
   <body>
     <header class="header">
       <nav class="header__navbar">
         <div class="header__logo">
-          <a href="#"><img src="/img/logo.svg" alt="Logo" /></a>
+          <a href="/"><img src="/img/logo.svg" alt="Logo" /></a>
         </div>
         <ul class="header__nav-links">
           <li class="header__nav-item header__nav-item--discover">
             <a href="/discover">Discover</a>
           </li>
-          <li class="header__nav-item header__nav-item--menu">Menu</li>
+          <li class="header__nav-item header__nav-item--menu">
+            <a href="/login">Login</a>
+          </li>
         </ul>
       </nav>
     </header>
 
-    <main class="logout">
-      <h3 class="logout__title">Logout</h3>
-      <div class="logout__content">
-        <p>Are you sure you want to logout?</p>
-        <div class="logout__buttons">
-          <a href="/logout" class="logout__button logout__button--primary"
-            >Logout</a
-          >
-          <a href="/" class="logout__button logout__button--secondary"
-            >Cancel</a
-          >
-        </div>
-      </div>
+    <main>
+      <h1>Add Venue</h1>
+      <form id="venue-form">
+        <fieldset>
+          <label for="vname">Venue name:</label>
+          <input type="text" id="vname" />
+          <br />
+          <label for="vurl">Url:</label>
+          <input type="text" id="vurl" />
+          <br />
+          <label for="vdistrict">District:</label>
+          <input type="text" id="vdistrict" />
+        </fieldset>
+        <button type="submit" class="submitbutton">Add Venue</button>
+      </form>
+      <div id="message"></div>
     </main>
-
     <footer class="footer">
       <div class="footer__info">
         <img src="/img/logo.svg" alt="Logo" class="footer__logo" />

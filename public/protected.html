@@ -12,40 +12,28 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/styles.css" />
-    <script src="/javaScript/script2.js"></script>
   </head>
   <body>
     <header class="header">
       <nav class="header__navbar">
         <div class="header__logo">
-          <a href="/"><img src="/img/logo.svg" alt="Logo" /></a>
+          <a href="#"><img src="/img/logo.svg" alt="Logo" /></a>
         </div>
         <ul class="header__nav-links">
           <li class="header__nav-item header__nav-item--discover">
-            <a href="/discover">Discover</a>
+            <a href="/discover">Admin</a>
           </li>
-          <li class="header__nav-item header__nav-item--menu">Menu</li>
+          <li class="header__nav-item header__nav-item--menu">
+            <a href="/login">Login</a>
+          </li>
         </ul>
       </nav>
     </header>
 
     <main>
-      <h1>Add Venue</h1>
-      <form id="venue-form">
-        <fieldset>
-          <label for="vname">Venue name:</label>
-          <input type="text" id="vname" />
-          <br />
-          <label for="vurl">Url:</label>
-          <input type="text" id="vurl" />
-          <br />
-          <label for="vdistrict">District:</label>
-          <input type="text" id="vdistrict" />
-        </fieldset>
-        <button type="submit" class="submitbutton">Add Venue</button>
-      </form>
-      <div id="message"></div>
+      <h3 class="login__title">this is protected path!!!!</h3>
     </main>
+
     <footer class="footer">
       <div class="footer__info">
         <img src="/img/logo.svg" alt="Logo" class="footer__logo" />

@@ -4,26 +4,21 @@ document.addEventListener("DOMContentLoaded", function () {
     .then((venues) => {
       const listEl = document.getElementById("venues-list");
 
-      // Create a mapping of letter-based divs
       const alphabetDivs = {};
 
       venues.forEach((venue) => {
         const firstLetter = venue.name[0].toUpperCase();
 
-        // Check if the div for this letter already exists
         if (!alphabetDivs[firstLetter]) {
-          // Create a new div for this letter
           const letterDiv = document.createElement("div");
           letterDiv.id = `letter-${firstLetter}`;
           letterDiv.classList.add("venue-group");
           letterDiv.innerHTML = `<div class="letter-container"><p class="first-letter">${firstLetter}</p> <div class="line"></div></div>`;
           listEl.appendChild(letterDiv);
 
-          // Store the div in the mapping for future use
           alphabetDivs[firstLetter] = letterDiv;
         }
 
-        // Create the venue list item
         const li = document.createElement("div");
         const buttonContainer = document.createElement("div");
         const button = document.createElement("button");
@@ -38,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
         button.textContent = "X";
         editbutton.innerHTML = `<a href="/edit-venue?id=${venue.id}">Edit</a>`;
 
-        // Append the venue to the appropriate letter div
         alphabetDivs[firstLetter].appendChild(li);
         li.appendChild(buttonContainer);
         buttonContainer.appendChild(button);
@@ -46,10 +40,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
         button.addEventListener("click", async () => {
           try {
-            await fetch(`/api/venues/${venue.id}`, { method: "DELETE" });
-            li.remove();
+            const response = await fetch(`/api/venues/${venue.id}`, {
+              method: "DELETE",
+              credentials: "same-origin",
+            });
+
+            if (response.status === 200) {
+              li.remove();
+            } else if (response.status === 401) {
+              window.location.href = "/login";
+            } else if (response.status === 403) {
+              alert(
+                "Only admin users can delete venues. Please log in as an admin."
+              );
+              window.location.href = "/login";
+            } else {
+              const errorData = await response.json();
+              alert(`Error: ${errorData.error || "Failed to delete venue"}`);
+            }
           } catch (error) {
             console.error("Error deleting venue:", error);
+            alert("Failed to delete venue. Please try again later.");
           }
         });
       });
